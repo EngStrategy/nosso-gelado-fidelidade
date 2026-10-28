@@ -1,0 +1,603 @@
+/* =============================================================
+   Nosso Gelado — Identidade Visual e Estilos do Cartão e Painel
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+:root {
+  /* Paleta Oficial */
+  --bg-deep: #0b0114;
+  --bg-card-start: #1b022b;
+  --bg-card-end: #3b0a6b;
+  --purple-glow: #6e1bcc;
+  --purple-border: #5b21e6;
+  --purple-border-light: #8b5cf6;
+  --lilac: #b388eb;
+  --lilac-light: #e0ccf9;
+  --text-white: #ffffff;
+  --text-dim: #d1c4e9;
+  --leaf-green: #38b000;
+  --leaf-green-glow: #70e000;
+  --gold: #ffb703;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #10b981;
+  --surface-admin: #170428;
+  --surface-card: #24083d;
+  --surface-input: #120320;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 40px rgba(107, 33, 168, 0.25);
+  --shadow-btn: 0 6px 18px rgba(91, 33, 230, 0.35);
+  --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(91, 33, 230, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(56, 176, 0, 0.08) 0%, transparent 40%),
+    linear-gradient(180deg, #090011 0%, #170428 100%);
+  background-attachment: fixed;
+}
+
+/* ---------------- Tipografia de Destaque ---------------- */
+.brand-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--text-white);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  display: inline-block;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.brand-script {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--lilac);
+  margin-left: 4px;
+}
+
+.brand-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--lilac-light);
+  margin-top: 4px;
+  opacity: 0.9;
+}
+
+/* ---------------- Layout de Containers ---------------- */
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  padding: 20px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-container {
+  width: 100%;
+  max-width: 620px;
+  padding: 16px;
+}
+
+/* ---------------- O Cartão Físico Digitalizado ---------------- */
+.fidelidade-card {
+  width: 100%;
+  background: linear-gradient(135deg, #140122 0%, #2f0754 50%, #10011c 100%);
+  border: 1.5px solid rgba(179, 136, 235, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 24px 18px 20px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Elementos decorativos (folhas e garrafinhas inspiradas na arte física) */
+.card-decor-leaves {
+  position: absolute;
+  bottom: -15px;
+  left: -15px;
+  width: 90px;
+  height: 90px;
+  opacity: 0.8;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(56, 176, 0, 0.3));
+}
+
+.card-decor-bottles {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 65px;
+  height: 65px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.card-headline {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  line-height: 1.35;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Grade de 10 Selos: 2 linhas de 5 bolinhas */
+.stamps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+  margin-bottom: 22px;
+  justify-items: center;
+}
+
+.stamp-slot {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--purple-border);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.stamp-slot.empty {
+  background: radial-gradient(circle, #ffffff 65%, #f1ebfc 100%);
+}
+
+.stamp-slot.filled {
+  background: #25053b;
+  border-color: #8c43ec;
+  box-shadow: 0 4px 12px rgba(107, 33, 168, 0.6), 0 0 12px rgba(179, 136, 235, 0.4);
+  animation: stampPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.stamp-slot.filled img,
+.stamp-slot.filled svg {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes stampPop {
+  0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(1.18) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Informações e Progresso */
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.progress-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--lilac-light);
+  letter-spacing: 0.5px;
+}
+
+.progress-remaining {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.progress-remaining strong {
+  color: var(--lilac);
+  font-weight: 700;
+}
+
+.card-footer-contact {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--lilac-light);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(179, 136, 235, 0.2);
+  transition: var(--transition);
+}
+
+.card-footer-contact:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Banner Comemorativo de Prêmio ---------------- */
+.reward-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #157347 100%);
+  border: 2px solid #70e000;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(40, 167, 69, 0.35);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(112, 224, 0, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(112, 224, 0, 0.7); }
+}
+
+.reward-banner h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.reward-banner p {
+  font-size: 0.85rem;
+  color: #e8f5e9;
+  margin-bottom: 12px;
+}
+
+/* ---------------- Botões e Ações ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  color: #ffffff;
+  min-height: 48px; /* Fácil de tocar no mobile */
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6e1bcc 0%, #5b21e6 100%);
+  box-shadow: var(--shadow-btn);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7c2ae8 0%, #682ef0 100%);
+  box-shadow: 0 8px 22px rgba(107, 33, 168, 0.5);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+}
+
+.btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-white);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  background: #20ba5a;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  min-height: 36px;
+}
+
+/* ---------------- Painel Administrativo ---------------- */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background: var(--surface-admin);
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(179, 136, 235, 0.15);
+}
+
+.admin-search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.input-text {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--surface-input);
+  border: 1.5px solid rgba(179, 136, 235, 0.25);
+  border-radius: var(--radius-md);
+  color: var(--text-white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: var(--lilac);
+  box-shadow: 0 0 12px rgba(179, 136, 235, 0.3);
+}
+
+.input-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--lilac-light);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.client-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.client-card {
+  background: var(--surface-card);
+  border: 1px solid rgba(179, 136, 235, 0.15);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.client-card:hover {
+  border-color: var(--lilac);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.client-card.inactive {
+  opacity: 0.55;
+  background: #140520;
+}
+
+.badge-status {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-open {
+  background: rgba(179, 136, 235, 0.2);
+  color: var(--lilac-light);
+  border: 1px solid rgba(179, 136, 235, 0.3);
+}
+
+.badge-complete {
+  background: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+  border: 1px solid #10b981;
+}
+
+.badge-inactive {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* ---------------- Janela Modal (Confirmações / Formulários) ---------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: var(--surface-card);
+  border: 1.5px solid rgba(179, 136, 235, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-card);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.active .modal-box {
+  transform: scale(1);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 12px;
+}
+
+.modal-body {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Notificações Toast */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  background: #23063b;
+  color: #ffffff;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--lilac);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+.toast.toast-error {
+  border-left-color: var(--danger);
+}
+
+.toast.toast-success {
+  border-left-color: var(--success);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Histórico de Selos na Visão do Admin */
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.history-item.annulled {
+  text-decoration: line-through;
+  opacity: 0.5;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Responsividade adicional para celulares bem pequenos (< 380px) */
+@media (max-width: 379px) {
+  .stamp-slot {
+    width: 48px;
+    height: 48px;
+  }
+  .stamps-grid {
+    gap: 6px;
+  }
+  .brand-title {
+    font-size: 1.85rem;
+  }
+}

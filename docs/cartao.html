@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cartão Fidelidade — Nosso Gelado</title>
+  <meta name="description" content="Acompanhe seus selos do programa de fidelidade da Nosso Gelado (Açaí na garrafa). Complete 10 selos e ganhe um açaí grátis!">
+  <meta name="referrer" content="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-selo.svg">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Cabeçalho da Marca -->
+    <header style="text-align: center; margin-bottom: 8px;">
+      <h1 class="brand-title">Nosso<span class="brand-script">Gelado</span></h1>
+      <div class="brand-subtitle">AÇAÍ NA GARRAFA</div>
+    </header>
+
+    <!-- Estado de Carregamento -->
+    <div id="loading-state" style="text-align: center; padding: 40px 0;">
+      <div class="stamp-slot filled" style="margin: 0 auto 16px; width: 64px; height: 64px;">
+        <img src="assets/logo-selo.svg" alt="Carregando..." style="width: 75%; height: 75%;">
+      </div>
+      <p style="color: var(--lilac-light); font-size: 0.95rem;">Carregando seu cartão fidelidade...</p>
+    </div>
+
+    <!-- Estado de Erro (Token Inválido ou Inexistente) -->
+    <div id="error-state" style="display: none; width: 100%; text-align: center; margin-top: 20px;">
+      <div class="fidelidade-card" style="padding: 32px 20px;">
+        <div style="font-size: 2.5rem; margin-bottom: 12px;">💜</div>
+        <h2 style="font-size: 1.2rem; color: var(--text-white); margin-bottom: 10px;">Cartão não encontrado</h2>
+        <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 24px;">
+          Não conseguimos localizar este cartão fidelidade. Verifique se o link está correto ou entre em contato conosco pelo WhatsApp.
+        </p>
+        <a id="btn-whatsapp-suporte" href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+          Falar com a Nosso Gelado no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Conteúdo Principal do Cartão -->
+    <main id="card-content" style="display: none; width: 100%;">
+      <!-- Saudação Pessoal -->
+      <div style="text-align: center; margin-top: 10px;">
+        <h2 id="cliente-saudacao" style="font-size: 1.35rem; font-weight: 700; color: var(--text-white);">
+          Olá! 💜
+        </h2>
+        <p style="font-size: 0.88rem; color: var(--lilac-light); margin-top: 2px;">
+          Aqui está o seu cartão fidelidade digital.
+        </p>
+      </div>
+
+      <!-- Banner Comemorativo de Prêmio Liberado (Aparece com 10 selos) -->
+      <div id="reward-banner" class="reward-banner" style="display: none;">
+        <h3>🎉 Parabéns! Seu açaí grátis está liberado!</h3>
+        <p>Apresente este cartão no seu próximo pedido ou avise no WhatsApp.</p>
+        <a id="btn-whatsapp-resgate" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+          Pedir meu Açaí Grátis pelo WhatsApp
+        </a>
+      </div>
+
+      <!-- O Cartão Físico com as 10 bolinhas -->
+      <div class="fidelidade-card">
+        <!-- Detalhes Decorativos inspirados na arte física -->
+        <svg class="card-decor-leaves" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 90C30 80 50 60 70 30M10 90C40 70 60 50 85 15M10 90C20 60 30 40 45 10" stroke="#38b000" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+
+        <p class="card-headline">Complete 10 selos e ganhe um açaí de graça.</p>
+
+        <!-- Grade de 10 Bolinhas (2 linhas de 5) -->
+        <div id="stamps-grid" class="stamps-grid">
+          <!-- Gerado dinamicamente pelo JavaScript -->
+        </div>
+
+        <!-- Seção de Progresso -->
+        <div class="progress-section">
+          <div id="progress-text" class="progress-text">0 de 10 selos</div>
+          <div id="progress-remaining" class="progress-remaining">
+            Faltam <strong>10 selos</strong> para o seu açaí grátis
+          </div>
+        </div>
+
+        <!-- Resgates Anteriores (discreto) -->
+        <div id="rewards-history" style="display: none; margin-top: 14px; font-size: 0.78rem; color: var(--text-dim); opacity: 0.85;">
+          🏆 Você já resgatou <span id="resgates-contador">0</span> açaí(s) grátis!
+        </div>
+
+        <!-- Contato da Loja -->
+        <a href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer" class="card-footer-contact">
+          <span style="color: #25d366;">WhatsApp</span> (89) 99450-7551
+        </a>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer style="margin-top: 28px; text-align: center; font-size: 0.75rem; color: var(--text-dim); opacity: 0.7;">
+      &copy; Nosso Gelado — Programa de Fidelidade
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/cartao.js"></script>
+</body>
+</html>

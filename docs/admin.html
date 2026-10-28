@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Painel do Administrador — Nosso Gelado</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-selo.svg">
+</head>
+<body>
+  <!-- Contêiner de Toasts de Notificação -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ================= TELA DE LOGIN ================= -->
+  <div id="view-login" class="app-container" style="display: none; justify-content: center; min-height: 80vh;">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h1 class="brand-title">Nosso<span class="brand-script">Gelado</span></h1>
+      <div class="brand-subtitle">PAINEL ADMINISTRATIVO</div>
+    </div>
+
+    <div class="fidelidade-card" style="padding: 28px 20px;">
+      <h2 style="font-size: 1.15rem; color: var(--text-white); margin-bottom: 18px; text-align: center;">
+        Acesso Restrito
+      </h2>
+
+      <form id="form-login" style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label class="input-label" for="login-usuario">Usuário</label>
+          <input type="text" id="login-usuario" class="input-text" placeholder="Digite seu usuário" required autocomplete="username" autocapitalize="none">
+        </div>
+
+        <div>
+          <label class="input-label" for="login-senha">Senha</label>
+          <input type="password" id="login-senha" class="input-text" placeholder="Digite sua senha" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" id="btn-submit-login" class="btn btn-primary btn-block" style="margin-top: 8px;">
+          Entrar no Painel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= PAINEL PRINCIPAL ================= -->
+  <div id="view-admin" class="admin-container" style="display: none;">
+    <!-- Barra Superior -->
+    <header class="admin-header">
+      <div>
+        <span style="font-size: 0.75rem; color: var(--lilac-light); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Nosso Gelado</span>
+        <h1 style="font-size: 1.15rem; font-weight: 700;">Cartão Fidelidade</h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span id="admin-user-display" style="font-size: 0.85rem; color: var(--lilac); font-weight: 600;">Admin</span>
+        <button id="btn-logout" class="btn btn-secondary btn-sm" title="Sair do sistema">Sair</button>
+      </div>
+    </header>
+
+    <!-- ABA 1: LISTAGEM DE CLIENTES -->
+    <section id="subview-lista">
+      <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+        <input type="text" id="input-busca" class="input-text" placeholder="🔍 Buscar por nome ou WhatsApp..." autocomplete="off">
+        <button id="btn-abrir-novo-cliente" class="btn btn-primary" style="white-space: nowrap;">
+          + Novo
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+        <span id="clientes-contador" style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600;">Carregando...</span>
+        <label style="font-size: 0.82rem; color: var(--text-dim); display: flex; align-items: center; gap: 6px; cursor: pointer;">
+          <input type="checkbox" id="check-inativos"> Mostrar inativos
+        </label>
+      </div>
+
+      <!-- Lista Renderizada -->
+      <div id="lista-clientes-container" class="client-list">
+        <!-- Renderizado dinamicamente -->
+      </div>
+    </section>
+
+    <!-- ABA 2: DETALHES DO CLIENTE SELECIONADO -->
+    <section id="subview-detalhes" style="display: none;">
+      <div style="margin-bottom: 14px;">
+        <button id="btn-voltar-lista" class="btn btn-secondary btn-sm">
+          ← Voltar para a lista
+        </button>
+      </div>
+
+      <!-- Cartão com Informações do Cliente -->
+      <div class="fidelidade-card" style="margin-top: 0; padding-bottom: 24px;">
+        <div style="width: 100%; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+          <div>
+            <h2 id="detalhe-nome" style="font-size: 1.3rem; font-weight: 800; color: var(--text-white);">—</h2>
+            <div id="detalhe-telefone" style="font-size: 0.88rem; color: var(--lilac-light); margin-top: 2px;">—</div>
+            <div id="detalhe-obs" style="font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; font-style: italic;"></div>
+          </div>
+          <span id="detalhe-status-badge" class="badge-status badge-open">Aberto</span>
+        </div>
+
+        <!-- 10 Bolinhas na Visão do Admin -->
+        <div id="admin-stamps-grid" class="stamps-grid" style="margin-bottom: 16px;"></div>
+
+        <div class="progress-section" style="margin-bottom: 18px;">
+          <div id="admin-progress-text" class="progress-text">0 de 10 selos</div>
+          <div id="admin-progress-remaining" class="progress-remaining">Faltam 10 selos para o açaí grátis</div>
+        </div>
+
+        <!-- Botão Principal de Lançamento (Grande, fácil de tocar) -->
+        <button id="btn-lancar-selo" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 16px; margin-bottom: 12px;">
+          ⭐ Lançar Selo (+1)
+        </button>
+
+        <!-- Botão de Resgate de Prêmio (Aparece em destaque quando 10/10) -->
+        <button id="btn-resgatar-premio" class="btn btn-success btn-block" style="display: none; font-size: 1.05rem; padding: 15px; margin-bottom: 12px;">
+          🎁 Resgatar Açaí Grátis (Zerar Cartão)
+        </button>
+
+        <!-- Ações do Link do Cliente -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-bottom: 16px;">
+          <button id="btn-copiar-link" class="btn btn-secondary btn-sm">
+            📋 Copiar Link
+          </button>
+          <a id="btn-enviar-whatsapp" href="#" target="_blank" class="btn btn-whatsapp btn-sm">
+            📱 WhatsApp
+          </a>
+        </div>
+
+        <!-- Ações de Gerenciamento do Cliente -->
+        <div style="display: flex; gap: 8px; width: 100%; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
+          <button id="btn-editar-cliente" class="btn btn-secondary btn-sm">
+            ✏️ Editar
+          </button>
+          <button id="btn-regenerar-link" class="btn btn-secondary btn-sm" title="Gera um link novo se o anterior vazou">
+            🔄 Novo Link
+          </button>
+          <button id="btn-toggle-ativo" class="btn btn-secondary btn-sm" style="color: var(--danger);">
+            Desativar
+          </button>
+        </div>
+      </div>
+
+      <!-- Histórico de Selos e Auditoria -->
+      <div style="margin-top: 24px;">
+        <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--lilac-light); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+          Histórico de Selos do Cartão
+        </h3>
+        <div id="historico-selos-container">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= MODAL: CADASTRAR CLIENTE ================= -->
+  <div id="modal-novo-cliente" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">Cadastrar Novo Cliente</h3>
+      <form id="form-novo-cliente">
+        <div style="margin-bottom: 12px;">
+          <label class="input-label" for="novo-nome">Nome do Cliente *</label>
+          <input type="text" id="novo-nome" class="input-text" placeholder="Ex: Maria Souza" required>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label class="input-label" for="novo-telefone">WhatsApp (opcional)</label>
+          <input type="tel" id="novo-telefone" class="input-text" placeholder="(89) 99450-7551">
+        </div>
+        <div style="margin-bottom: 18px;">
+          <label class="input-label" for="novo-obs">Observação (opcional)</label>
+          <input type="text" id="novo-obs" class="input-text" placeholder="Ex: Prefere com granola e leite condensado">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary btn-fechar-modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDITAR CLIENTE ================= -->
+  <div id="modal-editar-cliente" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">Editar Cliente</h3>
+      <form id="form-editar-cliente">
+        <div style="margin-bottom: 12px;">
+          <label class="input-label" for="edit-nome">Nome do Cliente *</label>
+          <input type="text" id="edit-nome" class="input-text" required>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label class="input-label" for="edit-telefone">WhatsApp (opcional)</label>
+          <input type="tel" id="edit-telefone" class="input-text">
+        </div>
+        <div style="margin-bottom: 18px;">
+          <label class="input-label" for="edit-obs">Observação (opcional)</label>
+          <input type="text" id="edit-obs" class="input-text">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary btn-fechar-modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: DESFAZER / ANULAR SELO ================= -->
+  <div id="modal-anular-selo" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title" style="color: var(--danger);">Desfazer Selo</h3>
+      <p class="modal-body">
+        O selo será desmarcado do cartão, mas permanecerá registrado no histórico para fins de auditoria.
+      </p>
+      <form id="form-anular-selo">
+        <input type="hidden" id="anular-selo-id">
+        <div style="margin-bottom: 18px;">
+          <label class="input-label" for="anular-motivo">Motivo do Cancelamento *</label>
+          <input type="text" id="anular-motivo" class="input-text" placeholder="Ex: Lançado por engano no pedido #12" required minlength="3">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary btn-fechar-modal">Voltar</button>
+          <button type="submit" class="btn btn-danger">Confirmar Cancelamento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIRMAR RESGATE ================= -->
+  <div id="modal-confirmar-resgate" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title" style="color: var(--success);">🎁 Entregar Açaí Grátis</h3>
+      <p class="modal-body">
+        Confirma a entrega do prêmio para <strong id="resgate-nome-cliente">—</strong>?<br><br>
+        O cartão atual será finalizado como <strong>Resgatado</strong> e um <strong>novo cartão zerado</strong> será aberto automaticamente para o cliente.
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary btn-fechar-modal">Cancelar</button>
+        <button type="button" id="btn-confirmar-resgate-acao" class="btn btn-success">Confirmar Resgate</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

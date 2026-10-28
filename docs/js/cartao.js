@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         slot.style.animationDelay = `${(i - 1) * 0.08}s`;
 
         const img = document.createElement('img');
-        img.src = 'assets/logo-selo.png';
+        img.src = 'assets/logo-selo.webp';
         img.alt = `Selo ${i}`;
         // Fallback automático para o SVG se o PNG não existir
         img.onerror = () => {

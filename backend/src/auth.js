@@ -39,7 +39,7 @@ export function criarAuth(db, config) {
     try {
       const dados = jwt.verify(m[1], config.jwtSegredo, { algorithms: ['HS256'] });
       const admin = buscarPorId.get(Number(dados.sub));
-      if (!admin || !admin.ativo) throw new Error('admin inexistente ou desativado');
+      if (!admin?.ativo) throw new Error('admin inexistente ou desativado');
       req.admin = { id: admin.id, usuario: admin.usuario };
       return next();
     } catch {

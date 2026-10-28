@@ -25,12 +25,12 @@
   --surface-admin: #170428;
   --surface-card: #24083d;
   --surface-input: #120320;
-  
+
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
-  
+
   --shadow-card: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 40px rgba(107, 33, 168, 0.25);
   --shadow-btn: 0 6px 18px rgba(91, 33, 230, 0.35);
   --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
@@ -53,7 +53,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   overflow-x: hidden;
-  background-image: 
+  background-image:
     radial-gradient(circle at 10% 20%, rgba(91, 33, 230, 0.15) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(56, 176, 0, 0.08) 0%, transparent 40%),
     linear-gradient(180deg, #090011 0%, #170428 100%);
@@ -70,6 +70,13 @@ body {
   line-height: 1.1;
   display: inline-block;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.logo-completa-oficial {
+  width: 160px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .brand-script {
@@ -201,9 +208,19 @@ body {
 }
 
 @keyframes stampPop {
-  0% { transform: scale(0.3) rotate(-20deg); opacity: 0; }
-  60% { transform: scale(1.18) rotate(5deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0deg); }
+  0% {
+    transform: scale(0.3) rotate(-20deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.18) rotate(5deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 /* Informações e Progresso */
@@ -269,8 +286,15 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 15px rgba(112, 224, 0, 0.4); }
-  50% { box-shadow: 0 0 25px rgba(112, 224, 0, 0.7); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(112, 224, 0, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(112, 224, 0, 0.7);
+  }
 }
 
 .reward-banner h3 {
@@ -302,7 +326,8 @@ body {
   transition: var(--transition);
   text-decoration: none;
   color: #ffffff;
-  min-height: 48px; /* Fácil de tocar no mobile */
+  min-height: 48px;
+  /* Fácil de tocar no mobile */
 }
 
 .btn:active {
@@ -566,8 +591,15 @@ body {
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Histórico de Selos na Visão do Admin */
@@ -594,9 +626,11 @@ body {
     width: 48px;
     height: 48px;
   }
+
   .stamps-grid {
     gap: 6px;
   }
+
   .brand-title {
     font-size: 1.85rem;
   }

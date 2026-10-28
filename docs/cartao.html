@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Cartão Fidelidade — Nosso Gelado</title>
-  <meta name="description" content="Acompanhe seus selos do programa de fidelidade da Nosso Gelado (Açaí na garrafa). Complete 10 selos e ganhe um açaí grátis!">
+  <meta name="description"
+    content="Acompanhe seus selos do programa de fidelidade da Nosso Gelado (Açaí na garrafa). Complete 10 selos e ganhe um açaí grátis!">
   <meta name="referrer" content="no-referrer">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&family=Sniglet&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cartao-visual.css">
   <link rel="icon" type="image/svg+xml" href="assets/logo-selo.svg">
 </head>
+
 <body>
   <div class="app-container">
     <!-- Cabeçalho da Marca -->
     <header style="text-align: center; margin-bottom: 8px;">
-      <h1 class="brand-title">Nosso<span class="brand-script">Gelado</span></h1>
-      <div class="brand-subtitle">AÇAÍ NA GARRAFA</div>
+      <img src="assets/logo-completa-oficial.webp" alt="Logo Nosso Gelado" class="logo-completa-oficial">
     </header>
 
     <!-- Estado de Carregamento -->
@@ -31,9 +38,11 @@
         <div style="font-size: 2.5rem; margin-bottom: 12px;">💜</div>
         <h2 style="font-size: 1.2rem; color: var(--text-white); margin-bottom: 10px;">Cartão não encontrado</h2>
         <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 24px;">
-          Não conseguimos localizar este cartão fidelidade. Verifique se o link está correto ou entre em contato conosco pelo WhatsApp.
+          Não conseguimos localizar este cartão fidelidade. Verifique se o link está correto ou entre em contato conosco
+          pelo WhatsApp.
         </p>
-        <a id="btn-whatsapp-suporte" href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+        <a id="btn-whatsapp-suporte" href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer"
+          class="btn btn-whatsapp btn-block">
           Falar com a Nosso Gelado no WhatsApp
         </a>
       </div>
@@ -55,42 +64,47 @@
       <div id="reward-banner" class="reward-banner" style="display: none;">
         <h3>🎉 Parabéns! Seu açaí grátis está liberado!</h3>
         <p>Apresente este cartão no seu próximo pedido ou avise no WhatsApp.</p>
-        <a id="btn-whatsapp-resgate" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+        <a id="btn-whatsapp-resgate" href="#" target="_blank" rel="noopener noreferrer"
+          class="btn btn-whatsapp btn-block">
           Pedir meu Açaí Grátis pelo WhatsApp
         </a>
       </div>
 
-      <!-- O Cartão Físico com as 10 bolinhas -->
-      <div class="fidelidade-card">
-        <!-- Detalhes Decorativos inspirados na arte física -->
-        <svg class="card-decor-leaves" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 90C30 80 50 60 70 30M10 90C40 70 60 50 85 15M10 90C20 60 30 40 45 10" stroke="#38b000" stroke-width="4" stroke-linecap="round"/>
-        </svg>
+      <!-- CARTÃO IDÊNTICO À ARTE FÍSICA (proporção 7:4) -->
+      <div class="cartao-img">
+        <div class="cartao-palco">
+          <!-- Decorações (somem sozinhas se o arquivo ainda não estiver na pasta assets) -->
+          <img class="deco-garrafas" src="assets/garrafas.png" alt="" onerror="this.style.display='none'">
+          <img class="deco-palmeira" src="assets/folha-palmeira.png" alt="" onerror="this.style.display='none'">
 
-        <p class="card-headline">Complete 10 selos e ganhe um açaí de graça.</p>
+          <p class="cartao-chamada">Complete 10 selos e ganhe um açaí de graça.</p>
 
-        <!-- Grade de 10 Bolinhas (2 linhas de 5) -->
-        <div id="stamps-grid" class="stamps-grid">
-          <!-- Gerado dinamicamente pelo JavaScript -->
+          <!-- Grade de 10 Bolinhas (2 linhas de 5) — gerada pelo JavaScript -->
+          <div id="stamps-grid" class="stamps-grid"></div>
+
+          <a class="cartao-contato" href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer"
+            aria-label="Chamar a Nosso Gelado no WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            <span>(89) 99450-7551</span>
+          </a>
         </div>
+      </div>
 
-        <!-- Seção de Progresso -->
-        <div class="progress-section">
-          <div id="progress-text" class="progress-text">0 de 10 selos</div>
-          <div id="progress-remaining" class="progress-remaining">
-            Faltam <strong>10 selos</strong> para o seu açaí grátis
-          </div>
+      <!-- Progresso (abaixo do cartão, fora da arte) -->
+      <div class="progress-section cartao-progresso">
+        <div id="progress-text" class="progress-text">0 de 10 selos</div>
+        <div id="progress-remaining" class="progress-remaining">
+          Faltam <strong>10 selos</strong> para o seu açaí grátis
         </div>
+      </div>
 
-        <!-- Resgates Anteriores (discreto) -->
-        <div id="rewards-history" style="display: none; margin-top: 14px; font-size: 0.78rem; color: var(--text-dim); opacity: 0.85;">
-          🏆 Você já resgatou <span id="resgates-contador">0</span> açaí(s) grátis!
-        </div>
-
-        <!-- Contato da Loja -->
-        <a href="https://wa.me/5589994507551" target="_blank" rel="noopener noreferrer" class="card-footer-contact">
-          <span style="color: #25d366;">WhatsApp</span> (89) 99450-7551
-        </a>
+      <!-- Resgates Anteriores (discreto) -->
+      <div id="rewards-history"
+        style="display: none; margin-top: 14px; text-align: center; font-size: 0.78rem; color: var(--text-dim); opacity: 0.85;">
+        🏆 Você já resgatou <span id="resgates-contador">0</span> açaí(s) grátis!
       </div>
     </main>
 
@@ -104,4 +118,5 @@
   <script src="js/api.js"></script>
   <script src="js/cartao.js"></script>
 </body>
+
 </html>

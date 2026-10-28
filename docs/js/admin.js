@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i <= cartao.selos) {
           slot.classList.add('filled');
           const img = document.createElement('img');
-          img.src = 'assets/logo-selo.png';
+          img.src = 'assets/logo-selo.webp';
           img.onerror = () => { img.onerror = null; img.src = 'assets/logo-selo.svg'; };
           slot.appendChild(img);
         } else {

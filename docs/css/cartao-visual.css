@@ -1,0 +1,167 @@
+/* =============================================================
+   Nosso Gelado — Cartão fidelidade idêntico ao cartão físico
+   Carregue DEPOIS do style.css (não substitui o style.css).
+
+   COMO FUNCIONA
+   O cartão original tem 2100 x 1200 px. Cada medida abaixo está
+   escrita nessa escala (calc(var(--u) * N)), ou seja, N é o valor
+   em pixels da imagem original. O cartão inteiro escala sozinho
+   em qualquer celular. Para ajustar algo, mexa só no número N.
+   ============================================================= */
+
+:root {
+    /* Fontes: troque aqui se descobrir o nome exato no Canva */
+    --fonte-chamada: 'Sniglet', 'Chewy', cursive;
+    --fonte-contato: 'Quicksand', 'Montserrat', sans-serif;
+
+    --cor-chamada: #c8b1dc;
+    --cor-contato: #f3ecfb;
+    --cor-borda-selo: #5a1fe6;
+
+    /* Fundo do círculo quando preenchido. Se o seu selo for PNG
+     transparente com contorno branco, troque por #25053b */
+    --selo-fundo: #ffffff;
+}
+
+/* ---------- Moldura do cartão ---------- */
+.cartao-img {
+    width: 100%;
+    margin-top: 14px;
+    container-type: inline-size;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 40px rgba(107, 33, 168, 0.25);
+}
+
+.cartao-palco {
+    --u: calc(100cqw / 2100);
+    position: relative;
+    width: 100%;
+    aspect-ratio: 7 / 4;
+    overflow: hidden;
+    background:
+        /* 1) se existir assets/fundo-cartao.webp, ele vale (pixel-perfect) */
+        url('../assets/fundo-cartao.webp') center / cover no-repeat,
+        /* 2) senão, o degradê abaixo imita o fundo do cartão */
+        radial-gradient(ellipse at 0% 0%, #04200a 0%, transparent 38%),
+        radial-gradient(ellipse at 100% 100%, #052008 0%, transparent 40%),
+        linear-gradient(117deg, #0f1216 0%, #130f1f 22%, #2b0338 52%, #150b1c 78%, #0e1112 100%);
+}
+
+.cartao-palco>* {
+    position: absolute;
+}
+
+/* ---------- Frase do topo ---------- */
+.cartao-chamada {
+    left: 0;
+    right: 0;
+    top: calc(var(--u) * 196);
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-family: var(--fonte-chamada);
+    font-size: calc(var(--u) * 64);
+    line-height: calc(var(--u) * 80);
+    font-weight: 400;
+    color: var(--cor-chamada);
+}
+
+/* ---------- Garrafinhas (canto superior direito) ---------- */
+.deco-garrafas {
+    left: calc(var(--u) * 1800);
+    top: calc(var(--u) * 78);
+    width: calc(var(--u) * 232);
+    height: auto;
+    pointer-events: none;
+}
+
+/* ---------- Folha de palmeira (canto inferior esquerdo) ---------- */
+.deco-palmeira {
+    left: 0;
+    bottom: 0;
+    width: calc(var(--u) * 378);
+    height: auto;
+    pointer-events: none;
+}
+
+/* ---------- Grade 2 x 5 de bolinhas ---------- */
+.cartao-img .stamps-grid {
+    left: calc(var(--u) * 250);
+    top: calc(var(--u) * 355);
+    width: calc(var(--u) * 1599);
+    max-width: none;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, calc(var(--u) * 226));
+    column-gap: calc(var(--u) * 117.25);
+    row-gap: calc(var(--u) * 93);
+    justify-items: start;
+}
+
+.cartao-img .stamp-slot {
+    width: calc(var(--u) * 226);
+    height: calc(var(--u) * 226);
+    border: calc(var(--u) * 7) solid var(--cor-borda-selo);
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+/* Bolinha preenchida: a imagem do selo ocupa o círculo inteiro */
+.cartao-img .stamp-slot.filled {
+    background: var(--selo-fundo);
+    border-color: var(--cor-borda-selo);
+    box-shadow: none;
+}
+
+.cartao-img .stamp-slot.filled img,
+.cartao-img .stamp-slot.filled svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: none;
+}
+
+/* ---------- WhatsApp (rodapé do cartão) ---------- */
+.cartao-contato {
+    left: calc(var(--u) * 727);
+    /* top: calc(var(--u) * 1074); */
+    bottom: calc(var(--u) * 50);
+    display: flex;
+    align-items: center;
+    gap: calc(var(--u) * 17);
+    font-family: var(--fonte-contato);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(179, 136, 235, 0.2);
+    transition: var(--transition);
+    font-size: calc(var(--u) * 62);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--cor-contato);
+    text-decoration: none;
+}
+
+.cartao-contato svg {
+    width: calc(var(--u) * 68);
+    height: calc(var(--u) * 68);
+    fill: currentColor;
+    flex: none;
+}
+
+/* ---------- Progresso (fica abaixo do cartão, fora da arte) ---------- */
+.cartao-progresso {
+    margin-top: 18px;
+}
+
+/* Sem animação para quem pediu menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    .cartao-img .stamp-slot.filled {
+        animation: none;
+    }
+}

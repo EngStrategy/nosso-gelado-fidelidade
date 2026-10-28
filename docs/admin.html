@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/logo-selo.svg">
 </head>
+
 <body>
   <!-- Contêiner de Toasts de Notificação -->
   <div id="toast-container" class="toast-container"></div>
@@ -15,7 +17,7 @@
   <!-- ================= TELA DE LOGIN ================= -->
   <div id="view-login" class="app-container" style="display: none; justify-content: center; min-height: 80vh;">
     <div style="text-align: center; margin-bottom: 24px;">
-      <h1 class="brand-title">Nosso<span class="brand-script">Gelado</span></h1>
+      <img src="assets/logo-completa-oficial.webp" alt="Logo Nosso Gelado" class="logo-completa-oficial">
       <div class="brand-subtitle">PAINEL ADMINISTRATIVO</div>
     </div>
 
@@ -27,12 +29,14 @@
       <form id="form-login" style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
         <div>
           <label class="input-label" for="login-usuario">Usuário</label>
-          <input type="text" id="login-usuario" class="input-text" placeholder="Digite seu usuário" required autocomplete="username" autocapitalize="none">
+          <input type="text" id="login-usuario" class="input-text" placeholder="Digite seu usuário" required
+            autocomplete="username" autocapitalize="none">
         </div>
 
         <div>
           <label class="input-label" for="login-senha">Senha</label>
-          <input type="password" id="login-senha" class="input-text" placeholder="Digite sua senha" required autocomplete="current-password">
+          <input type="password" id="login-senha" class="input-text" placeholder="Digite sua senha" required
+            autocomplete="current-password">
         </div>
 
         <button type="submit" id="btn-submit-login" class="btn btn-primary btn-block" style="margin-top: 8px;">
@@ -47,7 +51,9 @@
     <!-- Barra Superior -->
     <header class="admin-header">
       <div>
-        <span style="font-size: 0.75rem; color: var(--lilac-light); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Nosso Gelado</span>
+        <span
+          style="font-size: 0.75rem; color: var(--lilac-light); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Nosso
+          Gelado</span>
         <h1 style="font-size: 1.15rem; font-weight: 700;">Cartão Fidelidade</h1>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
@@ -59,15 +65,19 @@
     <!-- ABA 1: LISTAGEM DE CLIENTES -->
     <section id="subview-lista">
       <div style="display: flex; gap: 10px; margin-bottom: 16px;">
-        <input type="text" id="input-busca" class="input-text" placeholder="🔍 Buscar por nome ou WhatsApp..." autocomplete="off">
+        <input type="text" id="input-busca" class="input-text" placeholder="🔍 Buscar por nome ou WhatsApp..."
+          autocomplete="off">
         <button id="btn-abrir-novo-cliente" class="btn btn-primary" style="white-space: nowrap;">
           + Novo
         </button>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
-        <span id="clientes-contador" style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600;">Carregando...</span>
-        <label style="font-size: 0.82rem; color: var(--text-dim); display: flex; align-items: center; gap: 6px; cursor: pointer;">
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+        <span id="clientes-contador"
+          style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600;">Carregando...</span>
+        <label
+          style="font-size: 0.82rem; color: var(--text-dim); display: flex; align-items: center; gap: 6px; cursor: pointer;">
           <input type="checkbox" id="check-inativos"> Mostrar inativos
         </label>
       </div>
@@ -88,11 +98,13 @@
 
       <!-- Cartão com Informações do Cliente -->
       <div class="fidelidade-card" style="margin-top: 0; padding-bottom: 24px;">
-        <div style="width: 100%; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+        <div
+          style="width: 100%; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
           <div>
             <h2 id="detalhe-nome" style="font-size: 1.3rem; font-weight: 800; color: var(--text-white);">—</h2>
             <div id="detalhe-telefone" style="font-size: 0.88rem; color: var(--lilac-light); margin-top: 2px;">—</div>
-            <div id="detalhe-obs" style="font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; font-style: italic;"></div>
+            <div id="detalhe-obs"
+              style="font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; font-style: italic;"></div>
           </div>
           <span id="detalhe-status-badge" class="badge-status badge-open">Aberto</span>
         </div>
@@ -106,12 +118,14 @@
         </div>
 
         <!-- Botão Principal de Lançamento (Grande, fácil de tocar) -->
-        <button id="btn-lancar-selo" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 16px; margin-bottom: 12px;">
+        <button id="btn-lancar-selo" class="btn btn-primary btn-block"
+          style="font-size: 1.1rem; padding: 16px; margin-bottom: 12px;">
           ⭐ Lançar Selo (+1)
         </button>
 
         <!-- Botão de Resgate de Prêmio (Aparece em destaque quando 10/10) -->
-        <button id="btn-resgatar-premio" class="btn btn-success btn-block" style="display: none; font-size: 1.05rem; padding: 15px; margin-bottom: 12px;">
+        <button id="btn-resgatar-premio" class="btn btn-success btn-block"
+          style="display: none; font-size: 1.05rem; padding: 15px; margin-bottom: 12px;">
           🎁 Resgatar Açaí Grátis (Zerar Cartão)
         </button>
 
@@ -126,11 +140,13 @@
         </div>
 
         <!-- Ações de Gerenciamento do Cliente -->
-        <div style="display: flex; gap: 8px; width: 100%; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
+        <div
+          style="display: flex; gap: 8px; width: 100%; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
           <button id="btn-editar-cliente" class="btn btn-secondary btn-sm">
             ✏️ Editar
           </button>
-          <button id="btn-regenerar-link" class="btn btn-secondary btn-sm" title="Gera um link novo se o anterior vazou">
+          <button id="btn-regenerar-link" class="btn btn-secondary btn-sm"
+            title="Gera um link novo se o anterior vazou">
             🔄 Novo Link
           </button>
           <button id="btn-toggle-ativo" class="btn btn-secondary btn-sm" style="color: var(--danger);">
@@ -141,7 +157,8 @@
 
       <!-- Histórico de Selos e Auditoria -->
       <div style="margin-top: 24px;">
-        <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--lilac-light); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
+        <h3
+          style="font-size: 0.95rem; font-weight: 700; color: var(--lilac-light); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">
           Histórico de Selos do Cartão
         </h3>
         <div id="historico-selos-container">
@@ -212,7 +229,8 @@
         <input type="hidden" id="anular-selo-id">
         <div style="margin-bottom: 18px;">
           <label class="input-label" for="anular-motivo">Motivo do Cancelamento *</label>
-          <input type="text" id="anular-motivo" class="input-text" placeholder="Ex: Lançado por engano no pedido #12" required minlength="3">
+          <input type="text" id="anular-motivo" class="input-text" placeholder="Ex: Lançado por engano no pedido #12"
+            required minlength="3">
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary btn-fechar-modal">Voltar</button>
@@ -228,7 +246,8 @@
       <h3 class="modal-title" style="color: var(--success);">🎁 Entregar Açaí Grátis</h3>
       <p class="modal-body">
         Confirma a entrega do prêmio para <strong id="resgate-nome-cliente">—</strong>?<br><br>
-        O cartão atual será finalizado como <strong>Resgatado</strong> e um <strong>novo cartão zerado</strong> será aberto automaticamente para o cliente.
+        O cartão atual será finalizado como <strong>Resgatado</strong> e um <strong>novo cartão zerado</strong> será
+        aberto automaticamente para o cliente.
       </p>
       <div class="modal-actions">
         <button type="button" class="btn btn-secondary btn-fechar-modal">Cancelar</button>
@@ -241,4 +260,5 @@
   <script src="js/api.js"></script>
   <script src="js/admin.js"></script>
 </body>
+
 </html>

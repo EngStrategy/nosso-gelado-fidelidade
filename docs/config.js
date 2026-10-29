@@ -10,7 +10,7 @@ window.CONFIG = {
   // Exemplo: https://note-acer-ubuntu-savio.tail12345.ts.net
   // Quando estiver testando localmente no seu computador, o sistema
   // detecta automaticamente e usa http://127.0.0.1:3000
-  API_URL_PRODUCAO: 'https://servidor-acer-saviosoaresc.tail951ff0.ts.net',
+  API_URL_PRODUCAO: 'https://api.engstrategy.com.br/nosso-gelado-fidelidade',
 
   // URL para testes locais no navegador
   API_URL_LOCAL: 'http://127.0.0.1:3000',
